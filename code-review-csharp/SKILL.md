@@ -39,6 +39,7 @@ The checklist rules are organized into separate files for easy maintenance:
 | [eventsource.md](eventsource.md) | EventSource |
 | [code-coverage.md](code-coverage.md) | Code Coverage Attributes |
 | [testing.md](testing.md) | Testing Considerations |
+| [solid-principles.md](solid-principles.md) | SOLID Design Principles |
 | [modern-csharp.md](modern-csharp.md) | Modern C# & .NET Idioms |
 
 ## Output Format
