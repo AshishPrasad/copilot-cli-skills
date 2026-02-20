@@ -68,6 +68,72 @@ git commit -m "Add <skill-name> skill"
 git push
 ```
 
+## Skill Discovery
+
+Copilot CLI automatically discovers skills from specific locations. To make your skills available, place them in one of the following directories:
+
+### Project skills (specific to a repository)
+
+Store skills under `.github/skills/` or `.claude/skills/` in your repository root. These are available only when working in that repository.
+
+```
+your-repo/
+└── .github/
+    └── skills/
+        └── my-skill/
+            └── SKILL.md
+```
+
+### Personal skills (shared across all projects)
+
+Store skills under `~/.copilot/skills/` or `~/.claude/skills/` in your home directory. These are available in all your projects.
+
+```
+~/.copilot/
+└── skills/
+    └── my-skill/
+        └── SKILL.md
+```
+
+### Organization / Enterprise skills
+
+Store skills in the `/skills/` directory of the `.github-private` repository in your organization or enterprise. These are available to all members across all projects.
+
+### Using this repository as a skill source
+
+To use skills from this repository, copy or symlink the skill directories into one of the discovery locations above. For example:
+
+```bash
+# Copy a skill to your personal skills directory
+cp -r code-review-csharp ~/.copilot/skills/code-review-csharp
+
+# Or symlink for automatic updates
+ln -s /path/to/copilot-cli-skills/code-review-csharp ~/.copilot/skills/code-review-csharp
+```
+
+You can also add a custom skills location directly from the CLI:
+
+```
+/skills add
+```
+
+### Managing skills in the CLI
+
+| Command | Description |
+|---------|-------------|
+| `/skills list` | List all available skills |
+| `/skills` | Toggle skills on or off |
+| `/skills info` | View details about a skill, including its location |
+| `/skills add` | Add an alternative skills location |
+| `/skills reload` | Reload skills without restarting the CLI |
+| `/skills remove <dir>` | Remove a directly-added skill |
+
+When performing tasks, Copilot automatically selects relevant skills based on your prompt and each skill's `description` field. You can also explicitly invoke a skill by prefixing its name with `/` in your prompt:
+
+```
+Use the /code-review-csharp skill to review this pull request.
+```
+
 ## Tips for Writing Effective Skills
 
 - **Be specific** — Vague instructions produce vague results. Include concrete examples, rule IDs, and code snippets where possible.
